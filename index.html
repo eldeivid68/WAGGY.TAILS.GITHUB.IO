@@ -494,33 +494,28 @@ footer {
                 flex-wrap: wrap; /* Hace que bajen si no caben en la pantalla */
                 }
 
+                /* Esto dentro de tu media query para móviles */
+            @media (max-width: 768px) {
+                /* Para apilar imagen y texto verticalmente */
+                .info-content > div {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    text-align: center !important;
+                    gap: 20px; /* espacio entre imagen y texto */
+                }
 
-                /* Estilo normal (computadora) */
-.info-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
+                .info-content img {
+                    width: 80%; /* ajusta tamaño de imagen al celular */
+                    height: auto;
+                }
 
-.info-content img {
-  max-width: 400px;
-  height: auto;
-  border-radius: 8px;
-}
+                .info-content p {
+                    font-size: 16px; /* opcional: ajusta tamaño de texto */
+                }
+            }
 
-/* Estilo para celulares */
-@media (max-width: 768px) {
-  .info-content {
-    flex-direction: column; /* Texto arriba y la imagen abajo */
-    text-align: center;     /* Centrar el texto */
-  }
-
-  .info-content img {
-    max-width: 100%;  /* La imagen se ajusta al ancho de pantalla */
-    height: auto;
-  }
-}
-
+                
             </style>
 
     
