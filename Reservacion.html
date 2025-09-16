@@ -1,0 +1,363 @@
+<!DOCTYPE html> <!-- Define que el documento es HTML5 -->
+<html lang="es"> <!-- Inicio del documento HTML, indicando idioma español -->
+<head>
+    <meta charset="UTF-8"> <!-- Codificación de caracteres en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajuste para que sea responsivo en móviles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Optimiza la conexión con Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Preconexión a Google Fonts con soporte de CORS -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"> <!-- Fuente Josefin Sans -->
+    <title>Formulario de Cita - Waggy Tails</title> <!-- Título de la página en el navegador -->
+    <style>
+        * {
+            margin: 0; /* Elimina márgenes por defecto */
+            padding: 0; /* Elimina relleno por defecto */
+            box-sizing: border-box; /* Incluye borde y relleno en el tamaño total */
+            font-family: 'Josefin Sans', Arial, sans-serif; /* Fuente general */
+        }
+
+        body {
+            background-color: #F4E7D4; /* Color de fondo */
+            color: #333; /* Color del texto */
+            display: flex; /* Usar flexbox */
+            flex-direction: column; /* Dirección en columna */
+            min-height: 100vh; /* Altura mínima toda la pantalla */
+        }
+
+        /* Barra con logo */
+        .shipping-bar {
+            position: relative; /* Posición relativa para capas */
+            height: 250px; /* Altura de la barra */
+            width: 100%; /* Ancho completo */
+            overflow: hidden; /* Oculta lo que sobresalga */
+            display: flex; /* Flexbox para centrar */
+            align-items: center; /* Alinear verticalmente */
+            justify-content: center; /* Alinear horizontalmente */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+
+        .shipping-bar::before {
+            content: ''; /* Seudo-elemento vacío */
+            position: absolute; /* Posiciona sobre el contenedor */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('jugete.jpeg'); /* Imagen de fondo */
+            background-size: cover; /* Ajustar al contenedor */
+            background-position: center; /* Centrar imagen */
+            filter: blur(8px) brightness(0.7); /* Desenfoque y oscurecimiento */
+            z-index: 1; /* Capa detrás del logo */
+        }
+
+        .shipping-bar::after {
+            content: ''; /* Otra capa */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(29, 113, 184, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%); /* Degradado */
+            z-index: 2; /* Encima del blur */
+        }
+
+        .logo-header {
+            height: 200px; /* Alto del logo */
+            width: auto; /* Ajusta el ancho */
+            max-width: 80%; /* No sobrepasa 80% */
+            position: relative; /* Se mantiene sobre capas */
+            z-index: 3; /* Encima de todo */
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)); /* Sombra en logo */
+        }
+
+        /* Línea azul donde iba el menú */
+        .menu-line {
+            width: 100%; /* Ocupa todo el ancho */
+            height: 20px; /* Grosor */
+            background-color: #1D71B8; /* Color azul */
+        }
+
+        main {
+            flex: 1; /* Ocupa espacio restante */
+            padding: 20px; /* Separación interna */
+        }
+
+        /* Formulario */
+        .form-section {
+            max-width: 800px; /* Ancho máximo */
+            margin: 40px auto; /* Centrado */
+            background-color: #193f60; /* Fondo azul oscuro */
+            padding: 30px; /* Relleno interno */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra */
+            color: white; /* Texto en blanco */
+        }
+
+        .form-section h2 {
+            text-align: center; /* Centra el título */
+            margin-bottom: 20px; /* Espacio inferior */
+        }
+
+        .form-section label {
+            display: block; /* Cada etiqueta ocupa línea completa */
+            margin: 10px 0 5px; /* Espaciado */
+        }
+
+        .form-section input, .form-section select, .form-section textarea {
+            width: 100%; /* Ocupan ancho completo */
+            padding: 10px; /* Relleno interno */
+            border-radius: 5px; /* Bordes redondeados */
+            border: none; /* Sin borde */
+            margin-bottom: 15px; /* Separación */
+        }
+
+        .form-section button {
+            background-color: #debc5c; /* Fondo dorado */
+            color: #193f60; /* Texto azul */
+            padding: 12px 20px; /* Relleno */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            font-size: 16px; /* Tamaño de texto */
+            cursor: pointer; /* Cambia cursor a mano */
+            width: 100%; /* Ocupa todo el ancho */
+            font-weight: bold; /* Negrita */
+        }
+
+footer {
+    background-color: #000000; /* Fondo negro */
+    color: white; /* Texto blanco */
+    padding: 20px; /* Relleno */
+    font-family: 'Josefin Sans', sans-serif; /* Fuente */
+}
+
+.footer-center {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* En columna */
+    align-items: center; /* Centrado horizontal */
+    gap: 10px; /* Espacio entre elementos */
+}
+
+.footer-text {
+    text-align: center; /* Texto centrado */
+}
+
+/* Redes sociales centradas */
+.social-card {
+    display: flex; /* Flexbox */
+    gap: 15px; /* Espaciado entre íconos */
+    justify-content: center; /* Centrado */
+    flex-wrap: wrap; /* Permite salto de línea */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .footer-center {
+        gap: 15px; /* Más espacio en móvil */
+    }
+}
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 20px; /* Menos padding en móvil */
+            }
+            footer {
+                flex-direction: column; /* Cambia a columna */
+                text-align: center; /* Texto centrado */
+                gap: 20px; /* Espaciado */
+            }
+            .social-card {
+                justify-content: center; /* Centrado */
+                width: 100%; /* Ocupa ancho completo */
+            }
+        }
+
+        
+            /* Para móvil */
+            body.mobile {
+                background-color: #fcfbe7; /* Fondo rosado */
+            }
+
+            /* Para escritorio */
+            body.desktop {
+                background-color: #e0f2fe; /* Fondo celeste */
+            }
+
+            /* Mejoras responsivas */
+            @media (max-width: 768px) {
+                .info-content {
+                    flex-direction: column !important; /* En columna */
+                    text-align: center; /* Centrado */
+                }
+
+                .info-content img {
+                    max-width: 100%; /* Imagen ajustada */
+                    height: auto; /* Mantiene proporción */
+                }
+
+                nav {
+                    padding: 10px 0; /* Ajuste de padding */
+                }
+            }
+
+           
+                button {
+                position: relative; /* Para efectos */
+                display: inline-block; /* Botón en línea */
+                cursor: pointer; /* Cursor de mano */
+                outline: none; /* Sin borde exterior */
+                border: 0; /* Sin borde */
+                vertical-align: middle; /* Centrado */
+                text-decoration: none; /* Sin subrayado */
+                font-family: inherit; /* Usa la fuente heredada */
+                font-size: 15px; /* Tamaño texto */
+                margin-top: 20px; /* Separación arriba */
+                }
+button.learn-more {
+    font-weight: 600;
+    color: #ffffff; /* Texto blanco */
+    text-transform: uppercase;
+    padding: 1.25em 2em;
+    background: #f68b3c; /* Naranja más suave */
+    border: 2px solid #d96a29; /* Borde más oscuro */
+    border-radius: 0.75em;
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+                background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.learn-more::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #d96a29; /* Fondo de la capa trasera */
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px #d96a29, 0 0.625em 0 0 #f68b3c;
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms, box-shadow 150ms;
+}
+
+button.learn-more:hover {
+    background: #ff9c57; /* Un poco más brillante */
+    transform: translate(0, 0.25em);
+}
+
+button.learn-more:hover::before {
+    box-shadow: 0 0 0 2px #d96a29, 0 0.5em 0 0;
+    transform: translate3d(0, 0.5em, -1em);
+}
+
+button.learn-more:active {
+    background: #e07a33; /* Más oscuro al presionar */
+    transform: translate(0em, 0.75em);
+}
+
+button.learn-more:active::before {
+    box-shadow: 0 0 0 2px #d96a29, 0 0 #f68b3c;
+    transform: translate3d(0, 0, -1em);
+}
+
+                /* Redes sociales centradas */
+                .social-card {
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+
+    </style>
+</head>
+<body>
+    <!-- Barra con logo -->
+    <div class="shipping-bar">
+        <img src="logo2.png" alt="Logo de Waggy Tails" class="logo-header"> <!-- Imagen del logo -->
+    </div>
+
+    <!-- Línea azul donde iba el menú -->
+    <div class="menu-line"></div>
+
+    <main>
+        <!-- Formulario de cita -->
+        <section class="form-section">
+            <h2>Aparta una Cita para tu Mascota</h2> <!-- Título -->
+            <form
+                action="https://formspree.io/f/xdklpaqz" 
+                method="POST" 
+            ><!-- Método POST --> <!-- URL a la que se envían los datos -->
+                <!-- Campos del formulario -->
+                <label for="ownerName">Nombre del dueño:</label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="Tu nombre" required>
+
+                <label for="petName">Nombre de la mascota:</label>
+                <input type="text" id="petName" name="petName" placeholder="Nombre de tu peludo amigo" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Número de contacto" required>
+
+                <label for="service">Servicio deseado:</label>
+                <select id="service" name="service" required>
+                    <option value="">--Selecciona un servicio--</option>
+                    <option value="baño">Baño relajante</option>
+                    <option value="corte">Corte de pelo profesional</option>
+                    <option value="deslanado">Deslanado y cepillado</option>
+                    <option value="limpieza">Limpieza de oídos y dientes</option>
+                    <option value="masaje">Masaje y aromaterapia</option>
+                </select>
+
+                <label for="date">Fecha de la cita:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="notes">Notas adicionales:</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="Alguna indicación especial"></textarea>
+
+                <button type="submit">Apartar Cita</button>
+            </form>
+
+            <!-- Botón para regresar -->
+            <div class="button-container"></div>
+            <a href="servicios.html" style="text-decoration: none;">
+                <button class="learn-more"> Regresar al menu :D </button>
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+     <div class="footer-center">
+        <!-- Texto de derechos reservados -->
+        <div class="footer-text" style="display: flex; align-items: center; gap: 10px;">
+            <span>&copy; 2025 Waggy Tails. Todos los derechos reservados. </span>
+        </div>
+        <!-- Información de contacto correo -->
+        <div class="footer-text" style="display: flex; align-items: center; gap: 10px;">
+            <span>&copy; Contacto  📧 Correo: WaggyTailsgt@gmail.com</span>
+        </div>
+        <!-- Información de contacto teléfono -->
+        <div class="footer-text" style="display: flex; align-items: center; gap: 10px;">
+            <span>&copy; 📞 Teléfono: +502 5575 8890 </span>
+        </div>
+
+        <!-- Sección redes sociales comentada -->
+        <!--<div class="social-card">...</div>-->
+    </footer>
+
+    <!-- Script para detectar dispositivo -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (/Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)) {
+                document.body.classList.add("mobile"); /* Si es móvil */
+            } else {
+                document.body.classList.add("desktop"); /* Si es escritorio */
+            }
+        });
+    </script>
+</body>
+</html>
