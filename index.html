@@ -495,10 +495,31 @@ footer {
                 }
 
 
-                @keyframes desplazar {
-                        0% { transform: translateX(0); }
-                        100% { transform: translateX(-100%); }
-                    }
+                /* Estilo normal (computadora) */
+.info-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.info-content img {
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Estilo para celulares */
+@media (max-width: 768px) {
+  .info-content {
+    flex-direction: column; /* Texto arriba y la imagen abajo */
+    text-align: center;     /* Centrar el texto */
+  }
+
+  .info-content img {
+    max-width: 100%;  /* La imagen se ajusta al ancho de pantalla */
+    height: auto;
+  }
+}
 
             </style>
 
