@@ -999,6 +999,71 @@ footer {
     }
 }
 
+        /* Mejora slider y tarjetas en móvil */
+@media (max-width: 768px) {
+
+    /* Ajusta slider */
+    .slider {
+        width: 100%;      /* ancho completo */
+        height: auto;     /* altura automática */
+        min-height: 200px;
+        border: 3px solid #D8AF3C;
+    }
+
+    .slide {
+        width: 100%;      /* cada slide ocupa todo el contenedor */
+        height: auto;
+    }
+
+    .slide img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;  /* mantiene proporción sin recortar */
+    }
+
+    /* Cards: hacer que ocupen ancho completo o adaptativo */
+    .cards-container,
+    .cards-grid {
+        grid-template-columns: 1fr; /* 1 columna */
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .card-effect {
+        width: 100%;       /* ocupa todo el ancho disponible */
+        max-width: 400px;  /* opcional, para no deformar demasiado */
+        margin: 0 auto;
+    }
+
+    /* Imágenes dentro de cards */
+    .card__image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Ajusta logo y barra difuminada */
+    .shipping-bar {
+        height: 150px;
+    }
+
+    .logo-header {
+        height: 100px;
+    }
+
+    /* Textos centrados en info-section */
+    .info-content {
+        text-align: center;
+    }
+
+    /* Botón centrado */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -1240,5 +1305,3 @@ footer {
 
 </body>
 </html>
-
-
