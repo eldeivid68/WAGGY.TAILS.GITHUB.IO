@@ -261,7 +261,7 @@ footer {
           transform: scale(1.5);
           border-radius: 15px;
         }
-        .soci
+        
         .socialContainer:hover .socialSvg {
             animation: slide-in-top 0.3s both;
         }
@@ -796,27 +796,27 @@ footer {
       animation: pulse-button 1.5s infinite;
     }
 
-    .cards-container {
-        width: 100%;
-        padding: 40px 0;
-        background-color: #FFF9FA;
-        position: relative;
-        margin: 50px 0;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 75px;
-        justify-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px;
-        position: relative;
-        z-index: 1;
-        display: grid;
-        border-radius: 15px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        
-      
-    }
+.cards-container {
+    width: 100%;
+    padding: 40px 0;
+    background-color: #FFF9FA;
+    position: relative;
+    margin: 50px 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 75px;
+    justify-items: center;   /* centra cada card en su celda */
+    justify-content: center; /* centra el grid completo */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 
     .cards-container::before {
         content: "";
@@ -1305,3 +1305,4 @@ footer {
 
 </body>
 </html>
+
